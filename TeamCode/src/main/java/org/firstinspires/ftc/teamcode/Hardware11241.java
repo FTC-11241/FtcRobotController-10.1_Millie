@@ -84,8 +84,8 @@ public class Hardware11241{
         hwMap = ahwMap;
 
         // Define and Initialize Motors
-        leftDrive = hwMap.get(DcMotor.class, "leftFrontDrive");
-        rightDrive = hwMap.get(DcMotor.class, "rightFrontDrive");
+        leftDrive = hwMap.get(DcMotor.class, "leftDrive");
+        rightDrive = hwMap.get(DcMotor.class, "rightDrive");
         liftMotor = hwMap.get(DcMotor.class, "liftMotor");
         hangMotor = hwMap.get(DcMotor.class, "hangMotor");
 
@@ -107,8 +107,8 @@ public class Hardware11241{
         hangMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         // Define and initialize ALL installed servos.
-        intake = hwMap.get(Servo.class, "intakeL");
-        orient = hwMap.get(Servo.class, "intakeR");
+        intake = hwMap.get(Servo.class, "intake");
+        orient = hwMap.get(Servo.class, "orient");
 
         intake.setPosition(1.0);
         orient.setPosition(0.5);
