@@ -84,7 +84,7 @@ public class BlueSteelTeleOpNovice extends LinearOpMode {
             double turn = -gamepad1.right_stick_x/2;
 
             leftFrontPower = Range.clip(leftDriveForward - driveSideways + turn, -1, 1);
-            rightFrontPower = Range.clip(leftDriveForward + driveSideways - turn, -1, 1);
+            rightFrontPower = Range.clip(rightDriveForward + driveSideways - turn, -1, 1);
 
 
             /*
