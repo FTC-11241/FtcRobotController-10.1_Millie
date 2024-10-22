@@ -90,7 +90,7 @@ public class Hardware11241{
         hangMotor = hwMap.get(DcMotor.class, "hangMotor");
 
         leftDrive.setDirection(DcMotor.Direction.FORWARD);  // Set to FORWARD FOR goBILDA motors
-        rightDrive.setDirection(DcMotor.Direction.FORWARD); //// Set to "" goBILDA motors
+        rightDrive.setDirection(DcMotor.Direction.REVERSE); //// Set to "" goBILDA motors
         liftMotor.setDirection(DcMotor.Direction.REVERSE);       // Set to "" goBILDA motors
         hangMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         // Set all motors to zero power

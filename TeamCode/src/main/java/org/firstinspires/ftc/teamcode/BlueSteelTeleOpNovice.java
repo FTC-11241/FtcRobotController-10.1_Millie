@@ -80,11 +80,11 @@ public class BlueSteelTeleOpNovice extends LinearOpMode {
             // - This uses basic math to combine motions and is easier to drive straight.
             double leftDriveForward = gamepad1.left_stick_y/2;
             double rightDriveForward = gamepad1.right_stick_y/2;
-            double driveSideways = gamepad1.left_stick_x/2;
-            double turn = -gamepad1.right_stick_x/2;
+            //double driveSideways = gamepad1.left_stick_x/2;
+            //double turn = -gamepad1.right_stick_x/2;
 
-            leftFrontPower = Range.clip(leftDriveForward - driveSideways + turn, -1, 1);
-            rightFrontPower = Range.clip(rightDriveForward + driveSideways - turn, -1, 1);
+            leftFrontPower = Range.clip(leftDriveForward /*- driveSideways + turn*/, -1, 1);
+            rightFrontPower = Range.clip(rightDriveForward /*+ driveSideways - turn*/, -1, 1);
 
 
             /*
@@ -114,6 +114,13 @@ public class BlueSteelTeleOpNovice extends LinearOpMode {
                 robot.liftMotor.setPower(1);
             else
                 robot.liftMotor.setPower(0);
+
+            if (gamepad2.dpad_left) {
+                robot.hangMotor.setPower(-1);
+            }
+            if (gamepad2.dpad_right)
+                robot.hangMotor.setPower(1);
+
 
             // right bumper controls intakeR and intakeL
             if (gamepad2.right_bumper) {
