@@ -105,10 +105,10 @@ public class BlueSteelTeleOpPro extends LinearOpMode {
             }
             */
             // D pad controls liftArm.
-            if (gamepad1.dpad_up) {
+            if (gamepad2.dpad_up) {
                 robot.liftMotor.setPower(-1);
             }
-            if (gamepad1.dpad_down)
+            if (gamepad2.dpad_down)
                 robot.liftMotor.setPower(1);
             else
                 robot.liftMotor.setPower(0);

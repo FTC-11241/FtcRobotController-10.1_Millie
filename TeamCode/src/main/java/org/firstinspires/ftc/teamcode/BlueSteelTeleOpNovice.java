@@ -107,22 +107,22 @@ public class BlueSteelTeleOpNovice extends LinearOpMode {
             }
             */
             // D pad controls liftArm.
-            if (gamepad1.dpad_up) {
+            if (gamepad2.dpad_up) {
                 robot.liftMotor.setPower(-1);
             }
-            if (gamepad1.dpad_down)
+            if (gamepad2.dpad_down)
                 robot.liftMotor.setPower(1);
             else
                 robot.liftMotor.setPower(0);
 
             // right bumper controls intakeR and intakeL
-            if (gamepad1.right_bumper) {
+            if (gamepad2.right_bumper) {
                 robot.orient.setPosition(0.70);
             }
             else
                 robot.orient.setPosition(0.50);
 
-            if (gamepad1.right_bumper) {
+            if (gamepad2.right_bumper) {
                 robot.intake.setPosition(0.0);
             }
             else
