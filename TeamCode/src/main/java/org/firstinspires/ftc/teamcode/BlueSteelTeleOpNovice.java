@@ -78,8 +78,8 @@ public class BlueSteelTeleOpNovice extends LinearOpMode {
             // Setup a variable for each drive wheel to save power level for telemetry
             // POV Mode uses right stick to go forward/back, and side to side, left x stick to turn/spin.
             // - This uses basic math to combine motions and is easier to drive straight.
-            double leftDriveForward = gamepad1.left_stick_y/2;
-            double rightDriveForward = gamepad1.right_stick_y/2;
+            double leftDriveForward = gamepad1.left_stick_y;
+            double rightDriveForward = gamepad1.right_stick_y;
             //double driveSideways = gamepad1.left_stick_x/2;
             //double turn = -gamepad1.right_stick_x/2;
 
