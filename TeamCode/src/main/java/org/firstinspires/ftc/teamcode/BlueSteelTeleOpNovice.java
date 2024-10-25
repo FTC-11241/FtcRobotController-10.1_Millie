@@ -118,8 +118,13 @@ public class BlueSteelTeleOpNovice extends LinearOpMode {
             if (gamepad2.dpad_left) {
                 robot.hangMotor.setPower(-1);
             }
+            else {
+                robot.hangMotor.setPower(0);
+            }
             if (gamepad2.dpad_right)
                 robot.hangMotor.setPower(1);
+            else
+                robot.hangMotor.setPower(0);
 
 
             // right bumper controls intakeR and intakeL
