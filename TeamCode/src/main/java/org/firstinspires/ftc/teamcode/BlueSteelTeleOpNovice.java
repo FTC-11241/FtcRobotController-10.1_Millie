@@ -110,8 +110,11 @@ public class BlueSteelTeleOpNovice extends LinearOpMode {
             if (gamepad2.dpad_up) {
                 robot.liftMotor.setPower(-1);
             }
+            else
+                robot.liftMotor.setPower(0);
+
             if (gamepad2.dpad_down)
-                robot.liftMotor.setPower(1);
+                robot.liftMotor.setPower(0.5);
             else
                 robot.liftMotor.setPower(0);
 
