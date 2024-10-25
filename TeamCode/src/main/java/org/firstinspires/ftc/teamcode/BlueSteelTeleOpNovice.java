@@ -138,10 +138,14 @@ public class BlueSteelTeleOpNovice extends LinearOpMode {
                 robot.orient.setPosition(0.50);
 
             if (gamepad2.left_bumper) {
-                robot.intake.setPosition(0.0);
+
+                if(robot.intake.getPosition() == 1.0){
+                    robot.intake.setPosition(0.0);
+                } else {
+                    robot.intake.setPosition(1.0);
+                }
             }
-            else
-                robot.intake.setPosition(1.0);
+
 
 
             // left bumper controls intakeL.
