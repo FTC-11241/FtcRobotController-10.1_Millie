@@ -35,6 +35,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.TouchSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 /**
@@ -66,7 +67,7 @@ public class Hardware11241{
     public DcMotor  hangMotor         = null;
     public Servo    intake            = null;
     public Servo    orient            = null;
-
+    public TouchSensor touchSensor    = null;
     public static final double MID_SERVO       =  0.50 ;
 
     /* local OpMode members. */
@@ -112,6 +113,8 @@ public class Hardware11241{
 
         intake.setPosition(1.0);
         orient.setPosition(0.5);
+
+        touchSensor = hwMap.get(TouchSensor.class, "touchSensor");
 
     }
     public void driveForward(int time){
