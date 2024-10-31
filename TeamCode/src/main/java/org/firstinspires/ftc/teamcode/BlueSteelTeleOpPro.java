@@ -47,7 +47,7 @@ import com.qualcomm.robotcore.util.Range;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@TeleOp(name="Blue Steel TeleOp Pro", group="Linear Opmode")
+@TeleOp(name="Blue Steel TeleOp Pro [Deprecated]", group="Linear Opmode")
 //@Disabled
 public class BlueSteelTeleOpPro extends LinearOpMode {
 

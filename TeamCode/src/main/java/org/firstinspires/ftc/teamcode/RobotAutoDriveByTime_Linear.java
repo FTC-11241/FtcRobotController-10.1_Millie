@@ -56,7 +56,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list
  */
 
-@Autonomous(name="Autonomous", group="Robot")
+@Autonomous(name="Autonomous[WIP]", group="Robot")
 
 public class RobotAutoDriveByTime_Linear extends LinearOpMode {
     Hardware11241 robot = new Hardware11241();   // Use Team 11241's hardware
@@ -70,32 +70,36 @@ public class RobotAutoDriveByTime_Linear extends LinearOpMode {
         // * The init() method of the hardware class does all the work here
         robot.init(hardwareMap);
 
-        // Send telemetry message to signify robot waiting;
-        telemetry.addData("Status", "Ready to run");    //
-        telemetry.update();
         robot.intake.setPosition(0.9);
-        Thread.sleep(1000);
+        Thread.sleep(3000);
         robot.intake.setPosition(0.5);
         Thread.sleep(1000);
+        // Send telemetry message to signify robot waiting;
+        telemetry.addData("Status", "Ready to run");
+        telemetry.update();
 
         // Wait for the game to start (driver presses START)
         waitForStart();
-        while (!robot.touchSensor.isPressed()) {
             robot.liftMotor.setPower(-0.75);
-            Thread.sleep(1000);
+            Thread.sleep(500);
             robot.liftMotor.setPower(0);
             robot.leftDrive.setPower(-0.25);
             robot.rightDrive.setPower(-0.25);
-        }
+            Thread.sleep(1000);
+            robot.leftDrive.setPower(0);
+            robot.rightDrive.setPower(0);
+            robot.hangMotor.setPower(-0.75);
+            Thread.sleep(500);
+            robot.hangMotor.setPower(0);
+            robot.leftDrive.setPower(0.25);
+            robot.rightDrive.setPower(0.25);
+            Thread.sleep(1000);
+            robot.leftDrive.setPower(0);
+            robot.rightDrive.setPower(0);
+            robot.hangMotor.setPower(0.75);
+
         robot.leftDrive.setPower(0);
         robot.rightDrive.setPower(0);
 
-        telemetry.addData("ok thats it", "I'll add the hook later");
-        if (robot.touchSensor.isPressed()) {
-            robot.leftDrive.setPower(0.25);
-            robot.rightDrive.setPower(0.25);
-        }
-        robot.leftDrive.setPower(0);
-        robot.rightDrive.setPower(0);
     }
 }

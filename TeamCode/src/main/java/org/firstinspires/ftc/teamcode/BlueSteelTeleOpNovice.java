@@ -107,6 +107,8 @@ public class BlueSteelTeleOpNovice extends LinearOpMode {
             }
             */
             // D pad controls liftArm.
+
+            //Liftmotor is the shoulder, defines the height of the hand
             if (gamepad2.dpad_up) {
                 robot.liftMotor.setPower(-1);
             }
@@ -118,6 +120,7 @@ public class BlueSteelTeleOpNovice extends LinearOpMode {
             else
                 robot.liftMotor.setPower(0);
 
+            //Hangmotor is the arm, defines the length of the arm
             if (gamepad2.dpad_left) {
                 robot.hangMotor.setPower(-1);
             }
@@ -130,13 +133,13 @@ public class BlueSteelTeleOpNovice extends LinearOpMode {
                 robot.hangMotor.setPower(0);
 
 
-            // right bumper controls intakeR and intakeL
+            // Orient is the wrist, determines the orientation of the hand
             if (gamepad2.right_bumper) {
                 robot.orient.setPosition(0.30);
             }
             else
                 robot.orient.setPosition(0.50);
-
+            //intake is the fingers, grips the piece [probably wont need to touch this]
             if (gamepad2.left_bumper) {
 
                 if(robot.intake.getPosition() == 1.0){

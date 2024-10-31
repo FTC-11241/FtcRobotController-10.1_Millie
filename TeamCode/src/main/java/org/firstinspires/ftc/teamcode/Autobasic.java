@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
-@Autonomous(name="AutonomousPark", group="Robot")
+@Autonomous(name="TurnandPark", group="Robot")
 public class Autobasic extends LinearOpMode {
     Hardware11241 robot = new Hardware11241();   // Use Team 11241's hardware
     /* Declare OpMode members. */
@@ -23,6 +23,7 @@ public class Autobasic extends LinearOpMode {
 
         // Wait for the game to start (driver presses START)
         waitForStart();
+        robot.turnRight();
         robot.turnRight();
         robot.turnRight();
         robot.leftDrive.setPower(-0.25);
