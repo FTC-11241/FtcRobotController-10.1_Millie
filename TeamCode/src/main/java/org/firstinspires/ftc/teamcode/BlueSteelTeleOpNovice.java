@@ -48,7 +48,7 @@ import com.qualcomm.robotcore.util.Range;
  */
 
 @TeleOp(name="Blue Steel TeleOp Novice", group="Linear Opmode")
-//@Disabled
+
 public class BlueSteelTeleOpNovice extends LinearOpMode {
 
     // Declare OpMode members.
