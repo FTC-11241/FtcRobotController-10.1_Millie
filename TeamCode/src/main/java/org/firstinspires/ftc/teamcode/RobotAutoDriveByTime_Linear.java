@@ -43,9 +43,11 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  *   otherwise you would use: RobotAutoDriveByEncoder;
  *
  *   The desired path in this example is:
- *   - Drive forward for 3 seconds
- *   - Spin right for 1.3 seconds
- *   - Drive Backward for 1 Second
+ *   - Drive forward for 2 seconds or bump touch sensor (if available)
+ *   - Drive Backward for 1 Second to hook specimen
+ *   - Spin right 90 degrees or more, for 1.3 seconds, Park
+ *   - Plan more moves to get behind samples
+ *   - Park robot (or get behind samples to park and push sample into zone)
  *
  *  The code is written in a simple form with no optimizations.
  *  However, there are several ways that this type of sequence could be streamlined,
@@ -59,11 +61,11 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 public class RobotAutoDriveByTime_Linear extends LinearOpMode {
     Hardware11241 robot = new Hardware11241();   // Use Team 11241's hardware
     /* Declare OpMode members. */
-    private ElapsedTime     runtime = new ElapsedTime();
+    private ElapsedTime runtime = new ElapsedTime();
 
 
     @Override
-    public void runOpMode() {
+    public void runOpMode() throws InterruptedException {
         // Initialize the hardware variables.
         // * The init() method of the hardware class does all the work here
         robot.init(hardwareMap);
@@ -71,17 +73,29 @@ public class RobotAutoDriveByTime_Linear extends LinearOpMode {
         // Send telemetry message to signify robot waiting;
         telemetry.addData("Status", "Ready to run");    //
         telemetry.update();
+        robot.intake.setPosition(0.9);
+        Thread.sleep(1000);
+        robot.intake.setPosition(0.5);
+        Thread.sleep(1000);
 
         // Wait for the game to start (driver presses START)
         waitForStart();
-
-        while(!robot.touchSensor.isPressed()){
-            robot.leftDrive.setPower(1);
-            robot.rightDrive.setPower(1);
+        while (!robot.touchSensor.isPressed()) {
+            robot.liftMotor.setPower(-0.75);
+            Thread.sleep(1000);
+            robot.liftMotor.setPower(0);
+            robot.leftDrive.setPower(-0.25);
+            robot.rightDrive.setPower(-0.25);
         }
         robot.leftDrive.setPower(0);
         robot.rightDrive.setPower(0);
 
-
+        telemetry.addData("ok thats it", "I'll add the hook later");
+        if (robot.touchSensor.isPressed()) {
+            robot.leftDrive.setPower(0.25);
+            robot.rightDrive.setPower(0.25);
+        }
+        robot.leftDrive.setPower(0);
+        robot.rightDrive.setPower(0);
     }
 }
