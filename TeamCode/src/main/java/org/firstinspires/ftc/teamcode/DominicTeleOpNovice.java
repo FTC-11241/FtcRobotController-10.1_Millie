@@ -29,28 +29,18 @@
 
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
-/**
- * This file contains a minimal example of a Linear "OpMode". An OpMode is a 'program' that runs in either
- * the autonomous or the teleop period of an FTC match. The names of OpModes appear on the menu
- * of the FTC Driver Station. When an selection is made from the menu, the corresponding OpMode
- * class is instantiated on the Robot Controller and executed.
- *
- * This particular OpMode just executes a basic Tank Drive Teleop for a two wheeled robot
- * It includes all the skeletal structure that all linear OpModes contain.
- *
- * Use Android Studios to Copy this Class, and Paste it into your team's code folder with a new name.
- * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
+/*
+ * clawbot control scheme
  */
 
-@TeleOp(name="Blue Steel TeleOp Pro [Deprecated]", group="Linear Opmode")
-@Disabled
-public class BlueSteelTeleOpPro extends LinearOpMode {
+@TeleOp(name="Blue Steel TeleOp but for Dominic", group="Linear Opmode")
+//@Disabled
+public class DominicTeleOpNovice extends LinearOpMode {
 
     // Declare OpMode members.
     Hardware11241 robot = new Hardware11241();   // Use Team 11241's hardware
@@ -79,66 +69,87 @@ public class BlueSteelTeleOpPro extends LinearOpMode {
             // Setup a variable for each drive wheel to save power level for telemetry
             // POV Mode uses right stick to go forward/back, and side to side, left x stick to turn/spin.
             // - This uses basic math to combine motions and is easier to drive straight.
-            double leftDriveForward = gamepad1.left_stick_y/2;
-            double rightDriveForward = gamepad1.right_stick_y/2;
-            double driveSideways = gamepad1.left_stick_x/2;
-            double turn = -gamepad1.right_stick_x/2;
+            double leftDriveForward = gamepad1.left_stick_y;
+            double rightDriveForward = gamepad1.right_stick_y;
+            //double driveSideways = gamepad1.left_stick_x/2;
+            //double turn = -gamepad1.right_stick_x/2;
 
-            leftFrontPower = Range.clip(leftDriveForward - driveSideways + turn, -1, 1);
-            rightFrontPower = Range.clip(rightDriveForward + driveSideways - turn, -1, 1);
+            leftFrontPower = Range.clip(leftDriveForward /*- driveSideways + turn*/, -1, 1);
+            rightFrontPower = Range.clip(rightDriveForward /*+ driveSideways - turn*/, -1, 1);
+
+
             /*
             // Slows down movement when the right stick is in use, making it easier to turn
-            if((turn == 0) && (driveForward + driveSideways !=0)){
-                leftFrontPower = Range.clip(driveForward - driveSideways, -0.75, 0.75);
-                rightFrontPower = Range.clip(driveForward + driveSideways, -0.75, 0.75);
-                leftRearPower = Range.clip(driveForward + driveSideways, -0.75, 0.75);
-                rightRearPower = Range.clip(driveForward - driveSideways, -0.75, 0.75);
-            }else if((turn == 0) && (driveForward + driveSideways == 0)){
+            if((turn == 0) && (leftDriveForward + driveSideways !=0)){
+                leftFrontPower = Range.clip(leftDriveForward - driveSideways, -0.75, 0.75);
+                rightFrontPower = Range.clip(leftDriveForward + driveSideways, -0.75, 0.75);
+                leftRearPower = Range.clip(leftDriveForward + driveSideways, -0.75, 0.75);
+                rightRearPower = Range.clip(leftDriveForward - driveSideways, -0.75, 0.75);
+            }else if((turn == 0) && (leftDriveForward + driveSideways == 0)){
                 leftFrontPower = 0;
                 rightFrontPower = 0;
                 leftRearPower = 0;
                 rightRearPower = 0;
             }else{
-                leftFrontPower = Range.clip(driveForward - driveSideways + turn, -0.5, 0.5);
-                rightFrontPower = Range.clip(driveForward + driveSideways - turn, -0.5, 0.5);
-                leftRearPower = Range.clip(driveForward + driveSideways + turn, -0.5, 0.5);
-                rightRearPower = Range.clip(driveForward - driveSideways - turn, -0.5, 0.5);
+                leftFrontPower = Range.clip(leftDriveForward - driveSideways + turn, -0.5, 0.5);
+                rightFrontPower = Range.clip(leftDriveForward + driveSideways - turn, -0.5, 0.5);
+                leftRearPower = Range.clip(leftDriveForward + driveSideways + turn, -0.5, 0.5);
+                rightRearPower = Range.clip(leftDriveForward - driveSideways - turn, -0.5, 0.5);
             }
             */
             // D pad controls liftArm.
-            if (gamepad2.dpad_up) {
+
+            //Liftmotor is the shoulder, defines the height of the hand
+            if (gamepad1.y) {
                 robot.liftMotor.setPower(-1);
             }
-            if (gamepad2.dpad_down)
-                robot.liftMotor.setPower(1);
             else
                 robot.liftMotor.setPower(0);
 
-            // right bumper controls intakeR and intakeL
-            if (gamepad1.right_bumper) {
-                robot.orient.setPosition(0.70);
-            }
+            if (gamepad1.a)
+                robot.liftMotor.setPower(0.5);
             else
-                robot.orient.setPosition(0.50);
+                robot.liftMotor.setPower(0);
 
+            //Hangmotor is the arm, defines the length of the arm
+            if (gamepad1.x) {
+                robot.hangMotor.setPower(-1);
+            }
+            else {
+                robot.hangMotor.setPower(0);
+            }
+            if (gamepad1.b)
+                robot.hangMotor.setPower(1);
+            else
+                robot.hangMotor.setPower(0);
+
+
+            // Orient is the wrist, determines the orientation of the hand
             if (gamepad1.right_bumper) {
-                robot.intake.setPosition(0.0);
+                robot.orient.setPosition(0.30);
             }
             else
-                robot.intake.setPosition(1.0);
+                robot.orient.setPosition(0.70);
+            //intake is the fingers, grips the piece [probably wont need to touch this]
+            if (gamepad1.left_bumper) {
+
+                if(robot.intake.getPosition() == 1.0){
+                    robot.intake.setPosition(0.0);
+                } else {
+                    robot.intake.setPosition(1.0);
+                }
+            }
+
 
 
             // left bumper controls intakeL.
             //if (gamepad1.left_bumper) {
             //robot.intakeL.setPosition(0.50);
 
-
-
             // Send calculated power to wheels
 
             robot.leftDrive.setPower(leftFrontPower);
             robot.rightDrive.setPower(rightFrontPower);
-
 
             // Show the elapsed game time and wheel power.
             telemetry.addData("Status", "Run Time: " + runtime.toString());

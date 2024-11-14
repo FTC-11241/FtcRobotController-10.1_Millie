@@ -48,15 +48,13 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * This hardware class assumes the following device names have been configured on the robot:
  * Note:  All names are lower case and some have single spaces between words.
  *
- * Motor channel:  Left Front drive motor:          "leftFrontDrive"
- * Motor channel:  Right Front drive motor:         "rightFrontDrive"
- * Motor channel:  Left Rear drive motor:           "leftRearDrive"
- * Motor channel:  Right Rear drive motor:          "leftRearDrive"
- * Motor channel:  Lift Arm:                        "liftMotor"
- * Servo channel:  Servo to intake Left:            "intakeL"
- * Servo channel:  Servo to intake Right:           "intakeR"
- * Servo channel:  Servo to drop pixel:             "drop"
- * Servo channel:  Servo paperairplane:             "paperairplane"
+ * Motor channel:  Left Drive motor:          "leftDrive"
+ * Motor channel:  Right Drive motor:         "rightDrive"
+ * Motor channel:  Lift Arm Motor:            "liftMotor"
+ * Servo channel:  Servo to intake:           "intake"
+ * Servo channel:  Servo to orient:           "orient"
+ * Touch Sensor:   Touch Sensor:              "touchSensor"
+ * Color Sensor:   Color Sensor:              "colorSensor"
  *
  */
 public class Hardware11241{
@@ -111,7 +109,7 @@ public class Hardware11241{
         intake = hwMap.get(Servo.class, "intake");
         orient = hwMap.get(Servo.class, "orient");
 
-        intake.setPosition(1.0);
+        intake.setPosition(0.0);
         orient.setPosition(0.5);
 
         touchSensor = hwMap.get(TouchSensor.class, "touchSensor");

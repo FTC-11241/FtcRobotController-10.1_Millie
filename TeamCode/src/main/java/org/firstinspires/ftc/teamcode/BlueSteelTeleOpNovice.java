@@ -138,7 +138,7 @@ public class BlueSteelTeleOpNovice extends LinearOpMode {
                 robot.orient.setPosition(0.30);
             }
             else
-                robot.orient.setPosition(0.50);
+                robot.orient.setPosition(0.70);
             //intake is the fingers, grips the piece [probably wont need to touch this]
             if (gamepad2.left_bumper) {
 
