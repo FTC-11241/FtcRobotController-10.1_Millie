@@ -140,6 +140,14 @@ public class BlueSteelTeleOpNovice extends LinearOpMode {
             else
                 robot.orient.setPosition(0.70);
             //intake is the fingers, grips the piece [probably wont need to touch this]
+            //Hold version
+            if(gamepad2.left_bumper)
+                robot.intake.setPosition(1.0);
+            else
+                robot.intake.setPosition(0.0);
+
+            /*
+            //Toggle version
             if (gamepad2.left_bumper) {
 
                 if(robot.intake.getPosition() == 1.0){
@@ -147,7 +155,7 @@ public class BlueSteelTeleOpNovice extends LinearOpMode {
                 } else {
                     robot.intake.setPosition(1.0);
                 }
-            }
+            }*/
 
 
 

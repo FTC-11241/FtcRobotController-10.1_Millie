@@ -81,25 +81,20 @@ public class RobotAutoDriveByTime_Linear extends LinearOpMode {
         // Wait for the game to start (driver presses START)
         waitForStart();
             robot.liftMotor.setPower(-0.75);
-            Thread.sleep(500);
+            Thread.sleep(2000);
             robot.liftMotor.setPower(0);
-            robot.leftDrive.setPower(-0.25);
-            robot.rightDrive.setPower(-0.25);
-            Thread.sleep(1000);
-            robot.leftDrive.setPower(0);
-            robot.rightDrive.setPower(0);
             robot.hangMotor.setPower(-0.75);
-            Thread.sleep(500);
+            Thread.sleep(4000);
             robot.hangMotor.setPower(0);
-            robot.leftDrive.setPower(0.25);
-            robot.rightDrive.setPower(0.25);
-            Thread.sleep(1000);
+
+            while(!robot.touchSensor.isPressed()) {
+                robot.leftDrive.setPower(1);
+                robot.rightDrive.setPower(1);
+                robot.leftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+                robot.rightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+            }
             robot.leftDrive.setPower(0);
             robot.rightDrive.setPower(0);
-            robot.hangMotor.setPower(0.75);
-
-        robot.leftDrive.setPower(0);
-        robot.rightDrive.setPower(0);
 
     }
 }
