@@ -57,7 +57,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  */
 
 @Autonomous(name="Autonomous[WIP]", group="Robot")
-@Disabled
+
 public class RobotAutoDriveByTime_Linear extends LinearOpMode {
     Hardware11241 robot = new Hardware11241();   // Use Team 11241's hardware
     /* Declare OpMode members. */
@@ -69,11 +69,8 @@ public class RobotAutoDriveByTime_Linear extends LinearOpMode {
         // Initialize the hardware variables.
         // * The init() method of the hardware class does all the work here
         robot.init(hardwareMap);
+        robot.intake.setPosition(1.0);
 
-        robot.intake.setPosition(0.9);
-        Thread.sleep(3000);
-        robot.intake.setPosition(0.5);
-        Thread.sleep(1000);
         // Send telemetry message to signify robot waiting;
         telemetry.addData("Status", "Ready to run");
         telemetry.update();

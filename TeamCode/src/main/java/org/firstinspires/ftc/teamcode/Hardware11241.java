@@ -109,8 +109,8 @@ public class Hardware11241{
         intake = hwMap.get(Servo.class, "intake");
         orient = hwMap.get(Servo.class, "orient");
 
-        intake.setPosition(0.0);
-        orient.setPosition(0.5);
+        intake.setPosition(0.3);
+        orient.setPosition(0.7);
 
         touchSensor = hwMap.get(TouchSensor.class, "touchSensor");
 
