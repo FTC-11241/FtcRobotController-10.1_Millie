@@ -69,7 +69,7 @@ public class RobotAutoDriveByTime_Linear extends LinearOpMode {
         // Initialize the hardware variables.
         // * The init() method of the hardware class does all the work here
         robot.init(hardwareMap);
-        robot.intake.setPosition(1.0);
+        robot.intake.setPosition(0.3);
 
         // Send telemetry message to signify robot waiting;
         telemetry.addData("Status", "Ready to run");
@@ -78,20 +78,19 @@ public class RobotAutoDriveByTime_Linear extends LinearOpMode {
         // Wait for the game to start (driver presses START)
         waitForStart();
             robot.liftMotor.setPower(-0.75);
-            Thread.sleep(2000);
+            Thread.sleep(200);
             robot.liftMotor.setPower(0);
             robot.hangMotor.setPower(-0.75);
-            Thread.sleep(4000);
+            Thread.sleep(400);
             robot.hangMotor.setPower(0);
 
-            while(!robot.touchSensor.isPressed()) {
                 robot.leftDrive.setPower(1);
                 robot.rightDrive.setPower(1);
+                Thread.sleep(1000);
                 robot.leftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
                 robot.rightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-            }
-            robot.leftDrive.setPower(0);
-            robot.rightDrive.setPower(0);
+                robot.leftDrive.setPower(0);
+                robot.rightDrive.setPower(0);
 
     }
 }
