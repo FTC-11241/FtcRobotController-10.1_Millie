@@ -64,7 +64,6 @@ public class Hardware11241{
     public DcMotor  liftMotor         = null;
     public DcMotor  hangMotor         = null;
     public Servo    intake            = null;
-    public Servo    orient            = null;
     public TouchSensor touchSensor    = null;
     public static final double MID_SERVO       =  0.50 ;
 
@@ -98,7 +97,7 @@ public class Hardware11241{
         liftMotor.setPower(0);
         hangMotor.setPower(0);
 
-        // Set all motors to run without encoders.
+        // Set all motors to run without encoders except liftMotor.
         // May want to use RUN_USING_ENCODERS if encoders are installed.
         leftDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -107,10 +106,8 @@ public class Hardware11241{
 
         // Define and initialize ALL installed servos.
         intake = hwMap.get(Servo.class, "intake");
-        orient = hwMap.get(Servo.class, "orient");
 
-        intake.setPosition(0.3);
-        orient.setPosition(0.7);
+        intake.setPosition(0.45);
 
         touchSensor = hwMap.get(TouchSensor.class, "touchSensor");
 

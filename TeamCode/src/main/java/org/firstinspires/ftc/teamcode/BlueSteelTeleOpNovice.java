@@ -133,18 +133,12 @@ public class BlueSteelTeleOpNovice extends LinearOpMode {
                 robot.hangMotor.setPower(0);
 
 
-            // Orient is the wrist, determines the orientation of the hand
-            if (gamepad2.right_bumper) {
-                robot.orient.setPosition(0.30);
-            }
-            else
-                robot.orient.setPosition(0.70);
             //intake is the fingers, grips the piece [probably wont need to touch this]
             //Hold version
             if(gamepad2.left_bumper)
                 robot.intake.setPosition(1.0);
             else
-                robot.intake.setPosition(0.0);
+                robot.intake.setPosition(0.45);
 
             /*
             //Toggle version
