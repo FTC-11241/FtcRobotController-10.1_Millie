@@ -2,10 +2,9 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 @Autonomous(name="TurnandPark", group="Robot")
-
+@Disabled
 public class Autobasic extends LinearOpMode {
     Hardware11241 robot = new Hardware11241();   // Use Team 11241's hardware
     /* Declare OpMode members. */
@@ -27,13 +26,13 @@ public class Autobasic extends LinearOpMode {
         robot.turnRight();
         robot.turnRight();
         robot.turnRight();
-        robot.leftDrive.setPower(-0.25);
-        robot.rightDrive.setPower(-0.25);
+        robot.leftBackDrive.setPower(-0.25);
+        robot.rightBackDrive.setPower(-0.25);
 
         while (opModeIsActive()) {
             if (robot.touchSensor.isPressed()|| runtime.seconds() > 5) {
-                robot.leftDrive.setPower(0);
-                robot.rightDrive.setPower(0);
+                robot.leftBackDrive.setPower(0);
+                robot.rightBackDrive.setPower(0);
                 break;
             }
         }

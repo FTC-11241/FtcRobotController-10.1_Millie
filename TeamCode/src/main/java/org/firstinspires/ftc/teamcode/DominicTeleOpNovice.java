@@ -29,6 +29,7 @@
 
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -39,7 +40,7 @@ import com.qualcomm.robotcore.util.Range;
  */
 
 @TeleOp(name="Blue Steel TeleOp but for Dominic", group="Linear Opmode")
-//@Disabled
+@Disabled
 public class DominicTeleOpNovice extends LinearOpMode {
 
     // Declare OpMode members.
@@ -124,8 +125,8 @@ public class DominicTeleOpNovice extends LinearOpMode {
                 robot.hangMotor.setPower(0);
 
 
-            // Orient is the wrist, determines the orientation of the hand *DEPRECATED*
-             //intake is the fingers, grips the piece [probably wont need to touch this]
+             // Orient is the wrist, determines the orientation of the hand *DEPRECATED*
+             // intake is the fingers, grips the piece [probably wont need to touch this]
             if (gamepad1.left_bumper) {
 
                 if(robot.intake.getPosition() == 1.0){
@@ -143,8 +144,8 @@ public class DominicTeleOpNovice extends LinearOpMode {
 
             // Send calculated power to wheels
 
-            robot.leftDrive.setPower(leftFrontPower);
-            robot.rightDrive.setPower(rightFrontPower);
+            robot.leftBackDrive.setPower(leftFrontPower);
+            robot.rightBackDrive.setPower(rightFrontPower);
 
             // Show the elapsed game time and wheel power.
             telemetry.addData("Status", "Run Time: " + runtime.toString());

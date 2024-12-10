@@ -80,8 +80,8 @@ public class BlueSteelTeleOpNovice extends LinearOpMode {
             // - This uses basic math to combine motions and is easier to drive straight.
             double leftDriveForward = gamepad1.left_stick_y;
             double rightDriveForward = gamepad1.right_stick_y;
-            //double driveSideways = gamepad1.left_stick_x/2;
-            //double turn = -gamepad1.right_stick_x/2;
+            double driveSideways = gamepad1.left_stick_x/2;
+            double turn = -gamepad1.right_stick_x/2;
 
             leftFrontPower = Range.clip(leftDriveForward /*- driveSideways + turn*/, -1, 1);
             rightFrontPower = Range.clip(rightDriveForward /*+ driveSideways - turn*/, -1, 1);
@@ -138,7 +138,7 @@ public class BlueSteelTeleOpNovice extends LinearOpMode {
             if(gamepad2.left_bumper)
                 robot.intake.setPosition(1.0);
             else
-                robot.intake.setPosition(0.45);
+                robot.intake.setPosition(0.30);
 
             /*
             //Toggle version
@@ -159,8 +159,8 @@ public class BlueSteelTeleOpNovice extends LinearOpMode {
 
             // Send calculated power to wheels
 
-            robot.leftDrive.setPower(leftFrontPower);
-            robot.rightDrive.setPower(rightFrontPower);
+            robot.leftBackDrive.setPower(leftFrontPower);
+            robot.rightBackDrive.setPower(rightFrontPower);
 
             // Show the elapsed game time and wheel power.
             telemetry.addData("Status", "Run Time: " + runtime.toString());

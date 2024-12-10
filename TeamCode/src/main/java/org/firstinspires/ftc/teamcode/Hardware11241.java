@@ -59,12 +59,15 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  */
 public class Hardware11241{
     /* Public OpMode members. */
-    public DcMotor  leftDrive         = null;
-    public DcMotor  rightDrive        = null;
+    public DcMotor leftBackDrive = null;
+    public DcMotor rightBackDrive = null;
+    public DcMotor leftFrontDrive = null;
+    public DcMotor rightFrontDrive = null;
     public DcMotor  liftMotor         = null;
     public DcMotor  hangMotor         = null;
     public Servo    intake            = null;
     public TouchSensor touchSensor    = null;
+
     public static final double MID_SERVO       =  0.50 ;
 
     /* local OpMode members. */
@@ -82,39 +85,49 @@ public class Hardware11241{
         hwMap = ahwMap;
 
         // Define and Initialize Motors
-        leftDrive = hwMap.get(DcMotor.class, "leftDrive");
-        rightDrive = hwMap.get(DcMotor.class, "rightDrive");
+        leftBackDrive = hwMap.get(DcMotor.class, "leftDrive");
+        rightBackDrive = hwMap.get(DcMotor.class, "rightDrive");
+        leftFrontDrive = hwMap.get(DcMotor.class, "leftFrontDrive");
+        rightFrontDrive = hwMap.get(DcMotor.class, "rightFrontDrive");
         liftMotor = hwMap.get(DcMotor.class, "liftMotor");
         hangMotor = hwMap.get(DcMotor.class, "hangMotor");
 
-        leftDrive.setDirection(DcMotor.Direction.FORWARD);  // Set to FORWARD FOR goBILDA motors
-        rightDrive.setDirection(DcMotor.Direction.REVERSE); //// Set to "" goBILDA motors
+        leftBackDrive.setDirection(DcMotor.Direction.FORWARD);  // Set to FORWARD FOR goBILDA motors
+        rightBackDrive.setDirection(DcMotor.Direction.REVERSE); //// Set to "" goBILDA motors
+        rightFrontDrive.setDirection(DcMotor.Direction.REVERSE);
+        leftFrontDrive.setDirection(DcMotor.Direction.FORWARD);
         liftMotor.setDirection(DcMotor.Direction.REVERSE);       // Set to "" goBILDA motors
         hangMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         // Set all motors to zero power
-        leftDrive.setPower(0);
-        rightDrive.setPower(0);
+        leftBackDrive.setPower(0);
+        rightBackDrive.setPower(0);
+        rightFrontDrive.setPower(0);
+        leftFrontDrive.setPower(0);
         liftMotor.setPower(0);
         hangMotor.setPower(0);
 
         // Set all motors to run without encoders except liftMotor.
         // May want to use RUN_USING_ENCODERS if encoders are installed.
-        leftDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        rightDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        leftBackDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        rightBackDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        leftFrontDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        rightFrontDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         liftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         hangMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         // Define and initialize ALL installed servos.
         intake = hwMap.get(Servo.class, "intake");
 
-        intake.setPosition(0.45);
+        intake.setPosition(0.30);
 
         touchSensor = hwMap.get(TouchSensor.class, "touchSensor");
 
     }
     public void driveForward(int time){
-        leftDrive.setPower(-0.55);
-        rightDrive.setPower(-0.55);
+        leftBackDrive.setPower(-0.55);
+        rightBackDrive.setPower(-0.55);
+        leftFrontDrive.setPower(-0.55);
+        rightFrontDrive.setPower(-0.55);
 
         try {
             Thread.sleep(time, 400);
@@ -122,12 +135,16 @@ public class Hardware11241{
             throw new RuntimeException(e);
         }
 
-        leftDrive.setPower(0);
-        rightDrive.setPower(0);
+        leftBackDrive.setPower(0);
+        rightBackDrive.setPower(0);
+        leftFrontDrive.setPower(0);
+        rightFrontDrive.setPower(0);
     }
     public void turnLeft(){
-        leftDrive.setPower(0.55);
-        rightDrive.setPower(-0.55);
+        leftBackDrive.setPower(0.55);
+        rightBackDrive.setPower(-0.55);
+        leftFrontDrive.setPower(0.55);
+        rightFrontDrive.setPower(-0.55);
 
         try {
             Thread.sleep(355, 400);
@@ -135,54 +152,76 @@ public class Hardware11241{
             throw new RuntimeException(e);
         }
 
-        leftDrive.setPower(0);
-        rightDrive.setPower(0);
+        leftBackDrive.setPower(0);
+        rightBackDrive.setPower(0);
+        leftFrontDrive.setPower(0);
+        rightFrontDrive.setPower(0);
     }
     public void turnRight(){
-        leftDrive.setPower(-0.55);
-        rightDrive.setPower(0.55);
+        leftBackDrive.setPower(-0.55);
+        rightBackDrive.setPower(0.55);
+        leftFrontDrive.setPower(-0.55);
+        rightFrontDrive.setPower(0.55);
+
         try {
             Thread.sleep(355, 400);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
 
-        leftDrive.setPower(0);
-        rightDrive.setPower(0);
+        leftBackDrive.setPower(0);
+        rightBackDrive.setPower(0);
+        leftFrontDrive.setPower(0);
+        rightFrontDrive.setPower(0);
     }
     public void driveLeft(int time){
-        leftDrive.setPower(-0.55);
-        rightDrive.setPower(0);
+        leftBackDrive.setPower(-0.55);
+        rightBackDrive.setPower(0);
+        leftFrontDrive.setPower(-0.55);
+        rightFrontDrive.setPower(0);
         try {
             Thread.sleep(time, 400);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
 
-        leftDrive.setPower(0);
-        rightDrive.setPower(0);
+        leftBackDrive.setPower(0);
+        rightBackDrive.setPower(0);
+        leftFrontDrive.setPower(0);
+        rightFrontDrive.setPower(0);
     }
     public void driveRight(int time){
-        leftDrive.setPower(0);
-        rightDrive.setPower(-0.55);
+        leftBackDrive.setPower(0);
+        rightBackDrive.setPower(-0.55);
+        leftFrontDrive.setPower(0);
+        rightFrontDrive.setPower(-0.55);
         try {
             Thread.sleep(time, 400);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
 
-        leftDrive.setPower(0);
-        rightDrive.setPower(0);
+        leftBackDrive.setPower(0);
+        rightBackDrive.setPower(0);
+        leftFrontDrive.setPower(0);
+        rightFrontDrive.setPower(0);
     }
     public void driveBackwards(int time){
-        leftDrive.setPower(0.55);
-        rightDrive.setPower(0.55);        try {
+        leftBackDrive.setPower(0.55);
+        rightBackDrive.setPower(0.55);
+        leftFrontDrive.setPower(0.55);
+        rightFrontDrive.setPower(0.55);
+
+        try {
             Thread.sleep(time, 400);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
 
-        leftDrive.setPower(0);
-        rightDrive.setPower(0);
+        leftBackDrive.setPower(0);
+        rightBackDrive.setPower(0);
+        leftFrontDrive.setPower(0);
+        rightFrontDrive.setPower(0);
+
     }
 }

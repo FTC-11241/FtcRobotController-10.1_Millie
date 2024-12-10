@@ -30,9 +30,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 /*
@@ -78,19 +76,19 @@ public class RobotAutoDriveByTime_Linear extends LinearOpMode {
         // Wait for the game to start (driver presses START)
         waitForStart();
             robot.liftMotor.setPower(-0.75);
-            Thread.sleep(200);
+            Thread.sleep(650);
             robot.liftMotor.setPower(0);
             robot.hangMotor.setPower(-0.75);
-            Thread.sleep(400);
+            Thread.sleep(3100);
             robot.hangMotor.setPower(0);
 
-                robot.leftDrive.setPower(1);
-                robot.rightDrive.setPower(1);
+                robot.leftBackDrive.setPower(-0.4);
+                robot.rightBackDrive.setPower(-0.4);
                 Thread.sleep(1000);
-                robot.leftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-                robot.rightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-                robot.leftDrive.setPower(0);
-                robot.rightDrive.setPower(0);
+                //robot.leftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+                //robot.rightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+                robot.leftBackDrive.setPower(0);
+                robot.rightBackDrive.setPower(0);
 
     }
 }

@@ -71,21 +71,31 @@ public class BlueSteelTeleOpPro extends LinearOpMode {
         runtime.reset();
 
         // run until the end of the match (driver presses STOP)
-        double leftFrontPower = 0;
-        double rightFrontPower = 0;
+
 
         while (opModeIsActive()) {
 
             // Setup a variable for each drive wheel to save power level for telemetry
             // POV Mode uses right stick to go forward/back, and side to side, left x stick to turn/spin.
             // - This uses basic math to combine motions and is easier to drive straight.
-            double leftDriveForward = gamepad1.left_stick_y/2;
-            double rightDriveForward = gamepad1.right_stick_y/2;
-            double driveSideways = gamepad1.left_stick_x/2;
-            double turn = -gamepad1.right_stick_x/2;
+            // Setup a variable for each drive wheel to save power level for telemetry
+            double leftFrontPower;
+            double rightFrontPower;
+            double leftRearPower;
+            double rightRearPower;
+            //init for claw
+            //int i = 0;
+            // POV Mode uses right stick to go forward/back, and side to side, left x stick to turn/spin.
+            // - This uses basic math to combine motions and is easier to drive straight.
+            double driveForward = gamepad1.right_stick_y;
+            double driveSideways  =  gamepad1.right_stick_x;
+            double turn  =  - gamepad1.left_stick_x;
 
-            leftFrontPower = Range.clip(leftDriveForward - driveSideways + turn, -1, 1);
-            rightFrontPower = Range.clip(rightDriveForward + driveSideways - turn, -1, 1);
+            leftFrontPower    = Range.clip(driveForward - driveSideways + turn, -1, 1) ;
+            rightFrontPower   = Range.clip(driveForward + driveSideways - turn, -1, 1) ;
+            leftRearPower    = Range.clip(driveForward + driveSideways + turn, -1, 1) ;
+            rightRearPower   = Range.clip(driveForward - driveSideways - turn, -1, 1) ;
+
             /*
             // Slows down movement when the right stick is in use, making it easier to turn
             if((turn == 0) && (driveForward + driveSideways !=0)){
@@ -104,7 +114,7 @@ public class BlueSteelTeleOpPro extends LinearOpMode {
                 leftRearPower = Range.clip(driveForward + driveSideways + turn, -0.5, 0.5);
                 rightRearPower = Range.clip(driveForward - driveSideways - turn, -0.5, 0.5);
             }
-            */
+                */
             // D pad controls liftArm.
             if (gamepad2.dpad_up) {
                 robot.liftMotor.setPower(-1);
@@ -131,8 +141,10 @@ public class BlueSteelTeleOpPro extends LinearOpMode {
 
             // Send calculated power to wheels
 
-            robot.leftDrive.setPower(leftFrontPower);
-            robot.rightDrive.setPower(rightFrontPower);
+            robot.leftBackDrive.setPower(leftRearPower);
+            robot.rightBackDrive.setPower(rightRearPower);
+            robot.leftFrontDrive.setPower(leftFrontPower);
+            robot.rightFrontDrive.setPower(rightFrontPower);
 
 
             // Show the elapsed game time and wheel power.

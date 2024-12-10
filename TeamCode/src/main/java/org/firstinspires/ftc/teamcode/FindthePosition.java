@@ -44,7 +44,7 @@ import java.util.List;
 
 
 @TeleOp(name = "Concept: AprilTag", group = "Concept")
-
+@Disabled
 public class FindthePosition extends LinearOpMode {
     Hardware11241 robot = new Hardware11241();
 
@@ -52,10 +52,11 @@ public class FindthePosition extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         robot.init(hardwareMap);
         // Reset the motor encoder so that it reads zero ticks
-        robot.hangMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.liftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         // Turn the motor back on, required if you use STOP_AND_RESET_ENCODER
-        robot.hangMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        robot.liftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        robot.liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         waitForStart();
 
@@ -71,7 +72,18 @@ public class FindthePosition extends LinearOpMode {
                 robot.liftMotor.setPower(0.5);
             else
                 robot.liftMotor.setPower(0);
-            int position = robot.hangMotor.getCurrentPosition();
+            if (gamepad2.dpad_left) {
+                robot.hangMotor.setPower(-1);
+            }
+            else {
+                robot.hangMotor.setPower(0);
+            }
+            if (gamepad2.dpad_right)
+                robot.hangMotor.setPower(1);
+            else
+                robot.hangMotor.setPower(0);
+
+            int position = robot.liftMotor.getCurrentPosition();
 
 
             // Show the position of the motor on telemetry
