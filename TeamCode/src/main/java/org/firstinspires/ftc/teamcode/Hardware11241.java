@@ -48,10 +48,13 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * This hardware class assumes the following device names have been configured on the robot:
  * Note:  All names are lower case and some have single spaces between words.
  *
- * Motor channel:  Left Drive motor:          "leftDrive"
- * Motor channel:  Right Drive motor:         "rightDrive"
+ * Motor channel:  Left Back Drive motor:     "leftBackDrive"
+ * Motor channel:  Right Back Drive motor:    "rightBackDrive"
+ * Motor channel:  Left Front Drive motor:    "leftFrontDrive"
+ * Motor channel:  Right Front Drive motor:   "rightFrontDrive"
  * Motor channel:  Lift Arm Motor:            "liftMotor"
- * Servo channel:  Servo to intake:           "intake"
+ * Motor channel:  Hang Motor:                "hangMotor"
+ * Servo channel:  Servo intake:              "intake"
  * Servo channel:  Servo to orient:           "orient"
  * Touch Sensor:   Touch Sensor:              "touchSensor"
  * Color Sensor:   Color Sensor:              "colorSensor"
@@ -68,8 +71,6 @@ public class Hardware11241{
     public Servo    intake            = null;
     public TouchSensor touchSensor    = null;
 
-    public static final double MID_SERVO       =  0.50 ;
-
     /* local OpMode members. */
     private HardwareMap hwMap           = null;
     private ElapsedTime period  = new ElapsedTime();
@@ -85,8 +86,8 @@ public class Hardware11241{
         hwMap = ahwMap;
 
         // Define and Initialize Motors
-        leftBackDrive = hwMap.get(DcMotor.class, "leftDrive");
-        rightBackDrive = hwMap.get(DcMotor.class, "rightDrive");
+        leftBackDrive = hwMap.get(DcMotor.class, "leftBackDrive");
+        rightBackDrive = hwMap.get(DcMotor.class, "rightBackDrive");
         leftFrontDrive = hwMap.get(DcMotor.class, "leftFrontDrive");
         rightFrontDrive = hwMap.get(DcMotor.class, "rightFrontDrive");
         liftMotor = hwMap.get(DcMotor.class, "liftMotor");
@@ -94,7 +95,7 @@ public class Hardware11241{
 
         leftBackDrive.setDirection(DcMotor.Direction.FORWARD);  // Set to FORWARD FOR goBILDA motors
         rightBackDrive.setDirection(DcMotor.Direction.REVERSE); //// Set to "" goBILDA motors
-        rightFrontDrive.setDirection(DcMotor.Direction.REVERSE);
+        rightFrontDrive.setDirection(DcMotor.Direction.FORWARD);
         leftFrontDrive.setDirection(DcMotor.Direction.FORWARD);
         liftMotor.setDirection(DcMotor.Direction.REVERSE);       // Set to "" goBILDA motors
         hangMotor.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -118,7 +119,7 @@ public class Hardware11241{
         // Define and initialize ALL installed servos.
         intake = hwMap.get(Servo.class, "intake");
 
-        intake.setPosition(0.30);
+        intake.setPosition(0.20);
 
         touchSensor = hwMap.get(TouchSensor.class, "touchSensor");
 

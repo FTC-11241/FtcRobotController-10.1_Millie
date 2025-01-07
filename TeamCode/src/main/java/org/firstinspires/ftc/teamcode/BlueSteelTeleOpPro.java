@@ -29,7 +29,6 @@
 
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -48,8 +47,8 @@ import com.qualcomm.robotcore.util.Range;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@TeleOp(name="Blue Steel TeleOp Pro [Deprecated]", group="Linear Opmode")
-@Disabled
+@TeleOp(name="Blue Steel TeleOp Pro", group="Linear Opmode")
+
 public class BlueSteelTeleOpPro extends LinearOpMode {
 
     // Declare OpMode members.
@@ -81,20 +80,20 @@ public class BlueSteelTeleOpPro extends LinearOpMode {
             // Setup a variable for each drive wheel to save power level for telemetry
             double leftFrontPower;
             double rightFrontPower;
-            double leftRearPower;
-            double rightRearPower;
+            double leftBackPower;
+            double rightBackPower;
             //init for claw
             //int i = 0;
             // POV Mode uses right stick to go forward/back, and side to side, left x stick to turn/spin.
             // - This uses basic math to combine motions and is easier to drive straight.
-            double driveForward = gamepad1.right_stick_y;
-            double driveSideways  =  gamepad1.right_stick_x;
-            double turn  =  - gamepad1.left_stick_x;
+            double driveForward = gamepad1.left_stick_y;
+            double driveSideways  =  gamepad1.left_stick_x;
+            double turn  =  - gamepad1.right_stick_x/2;
 
             leftFrontPower    = Range.clip(driveForward - driveSideways + turn, -1, 1) ;
             rightFrontPower   = Range.clip(driveForward + driveSideways - turn, -1, 1) ;
-            leftRearPower    = Range.clip(driveForward + driveSideways + turn, -1, 1) ;
-            rightRearPower   = Range.clip(driveForward - driveSideways - turn, -1, 1) ;
+            leftBackPower    = Range.clip(driveForward + driveSideways + turn, -1, 1) ;
+            rightBackPower = Range.clip(driveForward - driveSideways - turn, -1, 1) ;
 
             /*
             // Slows down movement when the right stick is in use, making it easier to turn
@@ -115,22 +114,30 @@ public class BlueSteelTeleOpPro extends LinearOpMode {
                 rightRearPower = Range.clip(driveForward - driveSideways - turn, -0.5, 0.5);
             }
                 */
-            // D pad controls liftArm.
+            // D pad controls liftArm and hangMotor.
             if (gamepad2.dpad_up) {
                 robot.liftMotor.setPower(-1);
             }
             if (gamepad2.dpad_down)
-                robot.liftMotor.setPower(1);
+                robot.liftMotor.setPower(0.5);
             else
                 robot.liftMotor.setPower(0);
 
-            // right bumper controls intakeR and intakeL
+            if (gamepad2.dpad_left) {
+                robot.hangMotor.setPower(1);
+            }
+            if (gamepad2.dpad_right)
+                robot.hangMotor.setPower(-1);
+            else
+                robot.hangMotor.setPower(0);
 
-            if (gamepad1.right_bumper) {
-                robot.intake.setPosition(0.0);
+            // left bumper controls intake
+
+            if (gamepad2.left_bumper) {
+                robot.intake.setPosition(0.8);
             }
             else
-                robot.intake.setPosition(1.0);
+                robot.intake.setPosition(0.2);
 
 
             // left bumper controls intakeL.
@@ -141,8 +148,8 @@ public class BlueSteelTeleOpPro extends LinearOpMode {
 
             // Send calculated power to wheels
 
-            robot.leftBackDrive.setPower(leftRearPower);
-            robot.rightBackDrive.setPower(rightRearPower);
+            robot.leftBackDrive.setPower(leftBackPower);
+            robot.rightBackDrive.setPower(rightBackPower);
             robot.leftFrontDrive.setPower(leftFrontPower);
             robot.rightFrontDrive.setPower(rightFrontPower);
 
