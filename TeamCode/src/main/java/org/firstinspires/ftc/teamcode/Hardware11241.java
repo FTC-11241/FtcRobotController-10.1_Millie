@@ -31,6 +31,7 @@ package org.firstinspires.ftc.teamcode;
 
 import static java.lang.Thread.sleep;
 
+import com.qualcomm.hardware.sparkfun.SparkFunOTOS;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -69,7 +70,8 @@ public class Hardware11241{
     public DcMotor  liftMotor         = null;
     public DcMotor  hangMotor         = null;
     public Servo    intake            = null;
-    public TouchSensor touchSensor    = null;
+    public SparkFunOTOS mouseSensor   = null;
+    public DcMotor hangMotor2         = null;
 
     /* local OpMode members. */
     private HardwareMap hwMap           = null;
@@ -92,12 +94,15 @@ public class Hardware11241{
         rightFrontDrive = hwMap.get(DcMotor.class, "rightFrontDrive");
         liftMotor = hwMap.get(DcMotor.class, "liftMotor");
         hangMotor = hwMap.get(DcMotor.class, "hangMotor");
+        hangMotor2 = hwMap.get(DcMotor.class, "hangMotor2");
+        mouseSensor = hwMap.get(SparkFunOTOS.class, "mouseSensor");
 
         leftBackDrive.setDirection(DcMotor.Direction.FORWARD);  // Set to FORWARD FOR goBILDA motors
         rightBackDrive.setDirection(DcMotor.Direction.REVERSE); //// Set to "" goBILDA motors
         rightFrontDrive.setDirection(DcMotor.Direction.FORWARD);
         leftFrontDrive.setDirection(DcMotor.Direction.FORWARD);
         liftMotor.setDirection(DcMotor.Direction.REVERSE);       // Set to "" goBILDA motors
+        hangMotor2.setDirection(DcMotorSimple.Direction.FORWARD);
         hangMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         // Set all motors to zero power
         leftBackDrive.setPower(0);
@@ -106,6 +111,7 @@ public class Hardware11241{
         leftFrontDrive.setPower(0);
         liftMotor.setPower(0);
         hangMotor.setPower(0);
+        hangMotor2.setPower(0);
 
         // Set all motors to run without encoders except liftMotor.
         // May want to use RUN_USING_ENCODERS if encoders are installed.
@@ -115,13 +121,12 @@ public class Hardware11241{
         rightFrontDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         liftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         hangMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        hangMotor2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         // Define and initialize ALL installed servos.
         intake = hwMap.get(Servo.class, "intake");
 
         intake.setPosition(0.20);
-
-        touchSensor = hwMap.get(TouchSensor.class, "touchSensor");
 
     }
     public void driveForward(int time){

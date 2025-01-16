@@ -30,7 +30,7 @@ public class Autobasic extends LinearOpMode {
         robot.rightBackDrive.setPower(-0.25);
 
         while (opModeIsActive()) {
-            if (robot.touchSensor.isPressed()|| runtime.seconds() > 5) {
+            if (runtime.seconds() > 5) {
                 robot.leftBackDrive.setPower(0);
                 robot.rightBackDrive.setPower(0);
                 break;

@@ -29,22 +29,14 @@
 
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.hardware.sparkfun.SparkFunOTOS;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
-/**
- * This file contains a minimal example of a Linear "OpMode". An OpMode is a 'program' that runs in either
- * the autonomous or the teleop period of an FTC match. The names of OpModes appear on the menu
- * of the FTC Driver Station. When an selection is made from the menu, the corresponding OpMode
- * class is instantiated on the Robot Controller and executed.
- *
- * This particular OpMode just executes a basic Tank Drive Teleop for a two wheeled robot
- * It includes all the skeletal structure that all linear OpModes contain.
- *
- * Use Android Studios to Copy this Class, and Paste it into your team's code folder with a new name.
- * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
+/*
+ *Opmode for Millie yay!!!
  */
 
 @TeleOp(name="Blue Steel TeleOp Pro", group="Linear Opmode")
@@ -140,10 +132,19 @@ public class BlueSteelTeleOpPro extends LinearOpMode {
                 robot.intake.setPosition(0.2);
 
 
-            // left bumper controls intakeL.
-            //if (gamepad1.left_bumper) {
-            //robot.intakeL.setPosition(0.50);
-
+            // left bumper controls liftMotor2.
+            if (gamepad1.right_bumper) {
+                robot.hangMotor2.setPower(1);
+            }
+            else{
+                robot.hangMotor2.setPower(0);
+                }
+            if (gamepad1.left_bumper) {
+                robot.hangMotor2.setPower(-1);
+            }
+            else{
+                robot.hangMotor2.setPower(0);
+            }
 
 
             // Send calculated power to wheels
@@ -153,10 +154,34 @@ public class BlueSteelTeleOpPro extends LinearOpMode {
             robot.leftFrontDrive.setPower(leftFrontPower);
             robot.rightFrontDrive.setPower(rightFrontPower);
 
+            SparkFunOTOS.Pose2D pos = robot.mouseSensor.getPosition();
 
+            // Reset the tracking if the user requests it
+            if (gamepad1.y) {
+                robot.mouseSensor.resetTracking();
+            }
+
+            // Re-calibrate the IMU if the user requests it
+            if (gamepad1.x) {
+                if(robot.mouseSensor.calibrateImu()){
+                    telemetry.addLine("IMU Calibration Complete");
+                }else{
+                    telemetry.addLine("IMU Calibration Failed");
+                }
+            }
+
+            // Inform user of available controls
+            telemetry.addLine("Press Y (triangle) on Gamepad to reset tracking");
+            telemetry.addLine("Press X (square) on Gamepad to calibrate the IMU");
+            telemetry.addLine();
+
+            // Log the position to the telemetry
+            telemetry.addData("X coordinate", pos.x);
+            telemetry.addData("Y coordinate", pos.y);
+            telemetry.addData("Heading angle", pos.h);
             // Show the elapsed game time and wheel power.
             telemetry.addData("Status", "Run Time: " + runtime.toString());
-            //telemetry.addData("Motors", "LF (%.2f), RF (%.2f), LR (%.2f), RR (%.2f)", leftFrontPower, rightFrontPower, leftRearPower, rightRearPower);
+            telemetry.addData("Motors", "LF (%.2f), RF (%.2f), LR (%.2f), RR (%.2f)", leftFrontPower, rightFrontPower, leftBackPower, rightBackPower);
             telemetry.update();
         }
     }
