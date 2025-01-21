@@ -26,15 +26,7 @@ public class Autobasic extends LinearOpMode {
         robot.turnRight();
         robot.turnRight();
         robot.turnRight();
-        robot.leftBackDrive.setPower(-0.25);
-        robot.rightBackDrive.setPower(-0.25);
 
-        while (opModeIsActive()) {
-            if (runtime.seconds() > 5) {
-                robot.leftBackDrive.setPower(0);
-                robot.rightBackDrive.setPower(0);
-                break;
-            }
+        robot.driveForward(500);
         }
     }
-}

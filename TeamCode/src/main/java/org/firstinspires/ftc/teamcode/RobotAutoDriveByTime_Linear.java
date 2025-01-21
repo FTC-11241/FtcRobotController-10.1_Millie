@@ -29,6 +29,7 @@
 
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.hardware.sparkfun.SparkFunOTOS;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -75,23 +76,51 @@ public class RobotAutoDriveByTime_Linear extends LinearOpMode {
 
         // Wait for the game to start (driver presses START)
         waitForStart();
-            robot.liftMotor.setPower(-0.75);
-            Thread.sleep(650);
-            robot.liftMotor.setPower(0);
-            robot.hangMotor.setPower(-0.75);
-            Thread.sleep(3100);
-            robot.hangMotor.setPower(0);
+        robot.liftMotor.setPower(-0.75);
+        Thread.sleep(650);
+        robot.liftMotor.setPower(0);
+        robot.hangMotor.setPower(-0.75);
+        Thread.sleep(3100);
+        robot.hangMotor.setPower(0);
 
-                robot.leftBackDrive.setPower(0.4);
-                robot.rightBackDrive.setPower(-0.4);
-                robot.leftFrontDrive.setPower(0.4);
-                robot.rightFrontDrive.setPower(0.4);
-                Thread.sleep(1000);
-                //robot.leftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-                //robot.rightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        robot.leftBackDrive.setPower(0.4);
+        robot.rightBackDrive.setPower(0.4);
+        robot.leftFrontDrive.setPower(0.4);
+        robot.rightFrontDrive.setPower(0.4);
+        Thread.sleep(1000);
+        robot.leftBackDrive.setPower(0);
+        robot.rightBackDrive.setPower(0);
+        robot.leftFrontDrive.setPower(0);
+        robot.rightFrontDrive.setPower(0);
+        Thread.sleep(100);
+
+        robot.driveRight(500);
+        robot.driveForward(200);
+        robot.driveRight(700);
+        robot.leftBackDrive.setPower(-0.55);
+        robot.rightBackDrive.setPower(0.55);
+        robot.leftFrontDrive.setPower(-0.55);
+        robot.rightFrontDrive.setPower(0.55);
+        while(true){
+            SparkFunOTOS.Pose2D pos = robot.mouseSensor.getPosition();
+            if(pos.h==180){
                 robot.leftBackDrive.setPower(0);
                 robot.rightBackDrive.setPower(0);
                 robot.leftFrontDrive.setPower(0);
                 robot.rightFrontDrive.setPower(0);
+                break;
+            }
+        }
+        robot.driveForward(800);
+        robot.driveBackwards(800);
+        robot.driveLeft(300);
+        robot.driveForward(800);
+        robot.driveBackwards(800);
+        robot.driveLeft(300);
+        robot.driveForward(800);
+        robot.intake.setPosition(0.8);
+        Thread.sleep(1000);
+        robot.intake.setPosition(0.2);
+        robot.driveBackwards(800);
     }
 }

@@ -98,7 +98,7 @@ public class Hardware11241{
         mouseSensor = hwMap.get(SparkFunOTOS.class, "mouseSensor");
 
         leftBackDrive.setDirection(DcMotor.Direction.FORWARD);  // Set to FORWARD FOR goBILDA motors
-        rightBackDrive.setDirection(DcMotor.Direction.REVERSE); //// Set to "" goBILDA motors
+        rightBackDrive.setDirection(DcMotor.Direction.FORWARD); //// Set to "" goBILDA motors
         rightFrontDrive.setDirection(DcMotor.Direction.FORWARD);
         leftFrontDrive.setDirection(DcMotor.Direction.FORWARD);
         liftMotor.setDirection(DcMotor.Direction.REVERSE);       // Set to "" goBILDA motors

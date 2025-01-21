@@ -35,7 +35,7 @@ public class SensorSparkFunOTOS extends LinearOpMode {
         // Get a reference to the sensor
         myOtos = hardwareMap.get(SparkFunOTOS.class, "sensor_otos");
 
-        // All the configuration for the OTOS is done in this helper method, check it out!
+        // All the configuration for the OTOS is done in this help/er method, check it out!
         configureOtos();
 
         // Wait for the start button to be pressed
