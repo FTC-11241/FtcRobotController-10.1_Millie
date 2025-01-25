@@ -83,17 +83,17 @@ public class RobotAutoDriveByTime_Linear extends LinearOpMode {
         Thread.sleep(3100);
         robot.hangMotor.setPower(0);
 
-        robot.leftBackDrive.setPower(0.4);
-        robot.rightBackDrive.setPower(0.4);
-        robot.leftFrontDrive.setPower(0.4);
-        robot.rightFrontDrive.setPower(0.4);
+        robot.leftBackDrive.setPower(-0.4);
+        robot.rightBackDrive.setPower(-0.4);
+        robot.leftFrontDrive.setPower(-0.4);
+        robot.rightFrontDrive.setPower(-0.4);
         Thread.sleep(1000);
         robot.leftBackDrive.setPower(0);
         robot.rightBackDrive.setPower(0);
         robot.leftFrontDrive.setPower(0);
         robot.rightFrontDrive.setPower(0);
         Thread.sleep(100);
-
+        /*
         robot.driveRight(500);
         robot.driveForward(200);
         robot.driveRight(700);
@@ -122,5 +122,7 @@ public class RobotAutoDriveByTime_Linear extends LinearOpMode {
         Thread.sleep(1000);
         robot.intake.setPosition(0.2);
         robot.driveBackwards(800);
+
+         */
     }
 }

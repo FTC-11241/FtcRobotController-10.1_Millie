@@ -133,13 +133,13 @@ public class BlueSteelTeleOpPro extends LinearOpMode {
 
 
             // left bumper controls liftMotor2.
-            if (gamepad1.right_bumper) {
+            if (gamepad2.x) {
                 robot.hangMotor2.setPower(1);
             }
             else{
                 robot.hangMotor2.setPower(0);
                 }
-            if (gamepad1.left_bumper) {
+            if (gamepad2.b) {
                 robot.hangMotor2.setPower(-1);
             }
             else{
