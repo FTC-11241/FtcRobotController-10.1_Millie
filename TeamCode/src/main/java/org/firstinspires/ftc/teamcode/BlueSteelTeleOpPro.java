@@ -109,6 +109,7 @@ public class BlueSteelTeleOpPro extends LinearOpMode {
             // D pad controls liftArm and hangMotor.
             if (gamepad2.dpad_up) {
                 robot.liftMotor.setPower(-1);
+                telemetry.addLine("yes");
             }
             if (gamepad2.dpad_down)
                 robot.liftMotor.setPower(0.5);
@@ -173,7 +174,10 @@ public class BlueSteelTeleOpPro extends LinearOpMode {
             // Inform user of available controls
             telemetry.addLine("Press Y (triangle) on Gamepad to reset tracking");
             telemetry.addLine("Press X (square) on Gamepad to calibrate the IMU");
-            telemetry.addLine();
+            telemetry.addLine("LeftFront: " + leftFrontPower);
+            telemetry.addLine("LeftBack: " + leftBackPower);
+            telemetry.addLine("RightFront: " + rightFrontPower);
+            telemetry.addLine("RightBack: " + rightBackPower);
 
             // Log the position to the telemetry
             telemetry.addData("X coordinate", pos.x);

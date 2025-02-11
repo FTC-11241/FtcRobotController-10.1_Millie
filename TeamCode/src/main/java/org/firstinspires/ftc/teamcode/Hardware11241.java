@@ -181,8 +181,8 @@ public class Hardware11241{
         rightFrontDrive.setPower(0);
     }
     public void driveLeft(int time){
-        leftBackDrive.setPower(-0.55);
-        rightBackDrive.setPower(0);
+        leftBackDrive.setPower(0);
+        rightBackDrive.setPower(-0.55);
         leftFrontDrive.setPower(-0.55);
         rightFrontDrive.setPower(0);
         try {
@@ -197,8 +197,8 @@ public class Hardware11241{
         rightFrontDrive.setPower(0);
     }
     public void driveRight(int time){
-        leftBackDrive.setPower(0);
-        rightBackDrive.setPower(-0.55);
+        leftBackDrive.setPower(-0.55);
+        rightBackDrive.setPower(0);
         leftFrontDrive.setPower(0);
         rightFrontDrive.setPower(-0.55);
         try {

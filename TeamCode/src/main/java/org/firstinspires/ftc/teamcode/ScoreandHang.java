@@ -29,7 +29,6 @@
 
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.hardware.sparkfun.SparkFunOTOS;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -55,9 +54,9 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list
  */
 
-@Autonomous(name="Autonomous[WIP]", group="Robot")
+@Autonomous(name="Autonomous [FINISHED]", group="Robot")
 
-public class RobotAutoDriveByTime_Linear extends LinearOpMode {
+public class ScoreandHang extends LinearOpMode {
     Hardware11241 robot = new Hardware11241();   // Use Team 11241's hardware
     /* Declare OpMode members. */
     private ElapsedTime runtime = new ElapsedTime();
@@ -76,53 +75,49 @@ public class RobotAutoDriveByTime_Linear extends LinearOpMode {
 
         // Wait for the game to start (driver presses START)
         waitForStart();
-        robot.liftMotor.setPower(-0.75);
-        Thread.sleep(650);
+        robot.driveForward(100);
+        robot.liftMotor.setPower(-0.5);
+        Thread.sleep(750);
         robot.liftMotor.setPower(0);
-        robot.hangMotor.setPower(-0.75);
-        Thread.sleep(3100);
+        robot.hangMotor.setPower(-1);
+        Thread.sleep(475);
         robot.hangMotor.setPower(0);
-
-        robot.leftBackDrive.setPower(-0.4);
-        robot.rightBackDrive.setPower(-0.4);
-        robot.leftFrontDrive.setPower(-0.4);
-        robot.rightFrontDrive.setPower(-0.4);
+        robot.leftBackDrive.setPower(-0.5);
+        robot.rightBackDrive.setPower(-0.5);
+        robot.leftFrontDrive.setPower(-0.5);
+        robot.rightFrontDrive.setPower(-0.5);
         Thread.sleep(1000);
         robot.leftBackDrive.setPower(0);
         robot.rightBackDrive.setPower(0);
         robot.leftFrontDrive.setPower(0);
         robot.rightFrontDrive.setPower(0);
-        Thread.sleep(100);
-        /*
-        robot.driveRight(500);
-        robot.driveForward(200);
-        robot.driveRight(700);
-        robot.leftBackDrive.setPower(-0.55);
-        robot.rightBackDrive.setPower(0.55);
-        robot.leftFrontDrive.setPower(-0.55);
-        robot.rightFrontDrive.setPower(0.55);
-        while(true){
-            SparkFunOTOS.Pose2D pos = robot.mouseSensor.getPosition();
-            if(pos.h==180){
-                robot.leftBackDrive.setPower(0);
-                robot.rightBackDrive.setPower(0);
-                robot.leftFrontDrive.setPower(0);
-                robot.rightFrontDrive.setPower(0);
-                break;
-            }
-        }
-        robot.driveForward(800);
-        robot.driveBackwards(800);
-        robot.driveLeft(300);
-        robot.driveForward(800);
-        robot.driveBackwards(800);
-        robot.driveLeft(300);
-        robot.driveForward(800);
-        robot.intake.setPosition(0.8);
+        Thread.sleep(500);
+        robot.intake.setPosition(0.5);
+        robot.hangMotor.setPower(0.5);
         Thread.sleep(1000);
-        robot.intake.setPosition(0.2);
-        robot.driveBackwards(800);
-
-         */
+        robot.hangMotor.setPower(0);
+        robot.leftBackDrive.setPower(0.5);
+        robot.rightBackDrive.setPower(0.5);
+        robot.leftFrontDrive.setPower(0.5);
+        robot.rightFrontDrive.setPower(0.5);
+        Thread.sleep(1000);
+        robot.leftBackDrive.setPower(0);
+        robot.rightBackDrive.setPower(0);
+        robot.leftFrontDrive.setPower(0);
+        robot.rightFrontDrive.setPower(0);
+        robot.liftMotor.setPower(0.5);
+        robot.hangMotor.setPower(1);
+        Thread.sleep(1000);
+        robot.liftMotor.setPower(0);
+        robot.hangMotor.setPower(0);
+        robot.leftFrontDrive.setPower(-0.5);
+        robot.rightBackDrive.setPower(-0.5);
+        robot.leftBackDrive.setPower(0.5);
+        robot.rightFrontDrive.setPower(0.5);
+        Thread.sleep(2000);
+        robot.leftBackDrive.setPower(0);
+        robot.rightBackDrive.setPower(0);
+        robot.leftFrontDrive.setPower(0);
+        robot.rightFrontDrive.setPower(0);
     }
 }
