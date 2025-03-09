@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@Autonomous(name="AutoParkEasy[DEPRECATED]", group="Robot")
+@Autonomous(name="AutoParkEasy[USE THIS ONE]", group="Robot")
 public class Autosuperbasic extends LinearOpMode {
     Hardware11241 robot = new Hardware11241();   // Use Team 11241's hardware
     /* Declare OpMode members. */
@@ -22,14 +22,19 @@ public class Autosuperbasic extends LinearOpMode {
         telemetry.update();
 
         // Wait for the game to start (driver presses START)
+        //LFRB - RFLB +
         waitForStart();
-        robot.leftBackDrive.setPower(-0.25);
-        robot.rightBackDrive.setPower(-0.25);
-
+        robot.leftFrontDrive.setPower(-1);
+        robot.rightBackDrive.setPower(-1);
+        robot.leftBackDrive.setPower(1);
+        robot.rightFrontDrive.setPower(1);
         while (opModeIsActive()) {
-            if (runtime.seconds() > 3) {
+            if (runtime.seconds() > 1) {
                 robot.leftBackDrive.setPower(0);
                 robot.rightBackDrive.setPower(0);
+                robot.rightFrontDrive.setPower(0);
+                robot.leftFrontDrive.setPower(0);
+                robot.driveBackwards(200);
                 break;
             }
         }

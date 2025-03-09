@@ -77,7 +77,7 @@ public class ScoreandHang extends LinearOpMode {
         waitForStart();
         robot.driveForward(100);
         robot.liftMotor.setPower(-0.5);
-        Thread.sleep(750);
+        Thread.sleep(900);
         robot.liftMotor.setPower(0);
         robot.hangMotor.setPower(-1);
         Thread.sleep(475);
@@ -96,6 +96,8 @@ public class ScoreandHang extends LinearOpMode {
         robot.hangMotor.setPower(0.5);
         Thread.sleep(1000);
         robot.hangMotor.setPower(0);
+        //30, 30, 180
+
         robot.leftBackDrive.setPower(0.5);
         robot.rightBackDrive.setPower(0.5);
         robot.leftFrontDrive.setPower(0.5);
@@ -119,5 +121,6 @@ public class ScoreandHang extends LinearOpMode {
         robot.rightBackDrive.setPower(0);
         robot.leftFrontDrive.setPower(0);
         robot.rightFrontDrive.setPower(0);
+        
     }
 }

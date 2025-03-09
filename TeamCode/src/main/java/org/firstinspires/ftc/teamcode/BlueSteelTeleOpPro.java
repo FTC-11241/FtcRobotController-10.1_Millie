@@ -109,16 +109,17 @@ public class BlueSteelTeleOpPro extends LinearOpMode {
             // D pad controls liftArm and hangMotor.
             if (gamepad2.dpad_up) {
                 robot.liftMotor.setPower(-1);
-                telemetry.addLine("yes");
             }
             if (gamepad2.dpad_down)
                 robot.liftMotor.setPower(0.5);
             else
                 robot.liftMotor.setPower(0);
 
-            if (gamepad2.dpad_left) {
-                robot.hangMotor.setPower(1);
-            }
+            if (gamepad2.dpad_left)
+                robot.hangMotor.setPower(0.8);
+            else
+                robot.hangMotor.setPower(0);
+
             if (gamepad2.dpad_right)
                 robot.hangMotor.setPower(-1);
             else
@@ -134,7 +135,7 @@ public class BlueSteelTeleOpPro extends LinearOpMode {
 
 
             // left bumper controls liftMotor2.
-            if (gamepad2.x) {
+            if (gamepad2.a) {
                 robot.hangMotor2.setPower(1);
             }
             else{
@@ -155,7 +156,7 @@ public class BlueSteelTeleOpPro extends LinearOpMode {
             robot.leftFrontDrive.setPower(leftFrontPower);
             robot.rightFrontDrive.setPower(rightFrontPower);
 
-            SparkFunOTOS.Pose2D pos = robot.mouseSensor.getPosition();
+            /*SparkFunOTOS.Pose2D pos = robot.mouseSensor.getPosition();
 
             // Reset the tracking if the user requests it
             if (gamepad1.y) {
@@ -169,7 +170,7 @@ public class BlueSteelTeleOpPro extends LinearOpMode {
                 }else{
                     telemetry.addLine("IMU Calibration Failed");
                 }
-            }
+            }*/
 
             // Inform user of available controls
             telemetry.addLine("Press Y (triangle) on Gamepad to reset tracking");
@@ -180,9 +181,9 @@ public class BlueSteelTeleOpPro extends LinearOpMode {
             telemetry.addLine("RightBack: " + rightBackPower);
 
             // Log the position to the telemetry
-            telemetry.addData("X coordinate", pos.x);
-            telemetry.addData("Y coordinate", pos.y);
-            telemetry.addData("Heading angle", pos.h);
+            //telemetry.addData("X coordinate", pos.x);
+            //telemetry.addData("Y coordinate", pos.y);
+            //telemetry.addData("Heading angle", pos.h);
             // Show the elapsed game time and wheel power.
             telemetry.addData("Status", "Run Time: " + runtime.toString());
             telemetry.addData("Motors", "LF (%.2f), RF (%.2f), LR (%.2f), RR (%.2f)", leftFrontPower, rightFrontPower, leftBackPower, rightBackPower);

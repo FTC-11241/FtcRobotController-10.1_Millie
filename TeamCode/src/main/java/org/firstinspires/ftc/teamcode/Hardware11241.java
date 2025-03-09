@@ -70,7 +70,7 @@ public class Hardware11241{
     public DcMotor  liftMotor         = null;
     public DcMotor  hangMotor         = null;
     public Servo    intake            = null;
-    public SparkFunOTOS mouseSensor   = null;
+    //public SparkFunOTOS mouseSensor   = null;
     public DcMotor hangMotor2         = null;
 
     /* local OpMode members. */
@@ -95,7 +95,7 @@ public class Hardware11241{
         liftMotor = hwMap.get(DcMotor.class, "liftMotor");
         hangMotor = hwMap.get(DcMotor.class, "hangMotor");
         hangMotor2 = hwMap.get(DcMotor.class, "hangMotor2");
-        mouseSensor = hwMap.get(SparkFunOTOS.class, "mouseSensor");
+        //mouseSensor = hwMap.get(SparkFunOTOS.class, "mouseSensor");
 
         leftBackDrive.setDirection(DcMotor.Direction.FORWARD);  // Set to FORWARD FOR goBILDA motors
         rightBackDrive.setDirection(DcMotor.Direction.REVERSE); //// Set to "" goBILDA motors
@@ -170,7 +170,7 @@ public class Hardware11241{
         rightFrontDrive.setPower(0.55);
 
         try {
-            Thread.sleep(355, 400);
+            Thread.sleep(533, 100);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -230,4 +230,9 @@ public class Hardware11241{
         rightFrontDrive.setPower(0);
 
     }
-}
+    /*public void drivetopos(double x, double y, double h){
+        SparkFunOTOS.Pose2D pos = mouseSensor.getPosition();
+        while(pos.x!=x){
+            pos = mouseSensor.getPosition();
+        }*/
+    }

@@ -24,8 +24,6 @@ public class Autobasic extends LinearOpMode {
         // Wait for the game to start (driver presses START)
         waitForStart();
         robot.turnRight();
-        robot.turnRight();
-        robot.turnRight();
 
         robot.driveForward(500);
         }
